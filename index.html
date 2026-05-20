@@ -1,857 +1,341 @@
-<!-- =========================
-APPLE LIQUID GLASS STYLE
-FULL CLEAN REDESIGN
-========================= -->
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-<title>VEXYRON</title>
-
+<title>VEXYRON — Roblox Exploit</title>
+<meta name="description" content="VEXYRON — premium Roblox exploit script with undetected execution, weekly updates and a clean liquid glass UI." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-
-/* =========================
-ROOT
-========================= */
-
 :root{
-  --bg:#05070b;
-
-  --white:#ffffff;
-
-  --glass:rgba(255,255,255,.06);
-  --glass-strong:rgba(255,255,255,.09);
-
-  --border:rgba(255,255,255,.08);
-  --border-strong:rgba(255,255,255,.14);
-
-  --text:rgba(255,255,255,.92);
+  --bg:#06070d;
+  --text:#fff;
   --muted:rgba(255,255,255,.55);
-
-  --radius:34px;
-
-  --shadow:
-    0 10px 40px rgba(0,0,0,.35),
-    inset 0 1px 0 rgba(255,255,255,.05);
+  --glass:rgba(255,255,255,.04);
+  --glass-2:rgba(255,255,255,.07);
+  --border:rgba(255,255,255,.08);
+  --border-2:rgba(255,255,255,.14);
+  --accent:#7c5cff;
+  --accent-2:#22d3ee;
+  --radius:28px;
+  --shadow:0 10px 40px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.05);
 }
-
-/* =========================
-RESET
-========================= */
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
   font-family:'Inter',sans-serif;
   background:var(--bg);
-  color:white;
+  color:var(--text);
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
+  line-height:1.5;
 }
-
-/* =========================
-BACKGROUND
-========================= */
-
-.bg{
-  position:fixed;
-  inset:0;
-  overflow:hidden;
-  z-index:-5;
+a{color:inherit;text-decoration:none}
+/* ===== Background ===== */
+.bg{position:fixed;inset:0;z-index:-5;overflow:hidden}
+.bg::before,.bg::after{
+  content:'';position:absolute;width:780px;height:780px;border-radius:50%;
+  filter:blur(90px);opacity:.55;
 }
-
 .bg::before{
-  content:'';
-
-  position:absolute;
-  width:900px;
-  height:900px;
-
-  top:-250px;
-  left:-200px;
-
-  background:
-  radial-gradient(circle,
-    rgba(173,120,255,.28),
-    transparent 60%);
-
-  filter:blur(80px);
+  top:-220px;left:-180px;
+  background:radial-gradient(circle,rgba(124,92,255,.55),transparent 60%);
 }
-
 .bg::after{
-  content:'';
-
-  position:absolute;
-  width:900px;
-  height:900px;
-
-  bottom:-350px;
-  right:-250px;
-
-  background:
-  radial-gradient(circle,
-    rgba(70,120,255,.22),
-    transparent 60%);
-
-  filter:blur(80px);
+  bottom:-260px;right:-220px;
+  background:radial-gradient(circle,rgba(34,211,238,.35),transparent 60%);
 }
-
-.noise{
-  position:fixed;
-  inset:0;
-
+.grid-overlay{
+  position:fixed;inset:0;pointer-events:none;z-index:-4;opacity:.35;
   background-image:
-  radial-gradient(rgba(255,255,255,.08) 1px, transparent 1px);
-
-  background-size:4px 4px;
-
-  opacity:.02;
-
-  pointer-events:none;
+    linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(circle at 50% 30%,#000 0%,transparent 70%);
 }
-
-/* =========================
-NAVBAR
-========================= */
-
+/* ===== Nav ===== */
 nav{
-  position:fixed;
-
-  top:18px;
-  left:50%;
-
-  transform:translateX(-50%);
-
-  width:calc(100% - 40px);
-  max-width:1180px;
-
-  height:76px;
-
-  padding:0 26px;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  background:rgba(255,255,255,.05);
-
-  border:1px solid rgba(255,255,255,.08);
-
+  position:fixed;top:16px;left:50%;transform:translateX(-50%);
+  width:calc(100% - 32px);max-width:1120px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 14px 10px 22px;
+  background:rgba(12,14,22,.55);
+  border:1px solid var(--border);
   border-radius:999px;
-
-  backdrop-filter:blur(40px) saturate(180%);
-  -webkit-backdrop-filter:blur(40px) saturate(180%);
-
-  box-shadow:
-    0 10px 50px rgba(0,0,0,.30),
-    inset 0 1px 0 rgba(255,255,255,.06);
-
+  backdrop-filter:blur(24px) saturate(160%);
+  -webkit-backdrop-filter:blur(24px) saturate(160%);
+  box-shadow:var(--shadow);
   z-index:1000;
 }
-
-.logo{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.logo-circle{
-  width:36px;
-  height:36px;
-
-  border-radius:50%;
-
-  border:2px solid white;
-
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:1px}
+.logo-mark{
+  width:28px;height:28px;border-radius:8px;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  box-shadow:0 0 24px rgba(124,92,255,.6);
   position:relative;
-
-  box-shadow:
-    0 0 30px rgba(255,255,255,.25);
 }
-
-.logo-circle::before{
-  content:'';
-
-  position:absolute;
-
-  width:54px;
-  height:16px;
-
-  border:2px solid white;
-
-  border-radius:50%;
-
-  top:8px;
-  left:-11px;
-
-  transform:rotate(-20deg);
+.logo-mark::after{
+  content:'';position:absolute;inset:6px;border-radius:4px;
+  background:rgba(6,7,13,.85);
 }
-
-.logo span{
-  font-weight:700;
-  letter-spacing:1px;
-}
-
-.nav-links{
-  display:flex;
-  gap:8px;
-}
-
+.nav-links{display:flex;gap:4px}
 .nav-links a{
-  text-decoration:none;
-
-  color:rgba(255,255,255,.55);
-
-  font-size:.84rem;
-  font-weight:600;
-
-  padding:11px 18px;
-
-  border-radius:999px;
-
-  transition:.3s;
+  font-size:.85rem;font-weight:500;color:var(--muted);
+  padding:9px 14px;border-radius:999px;transition:.25s;
 }
-
-.nav-links a:hover{
-  background:rgba(255,255,255,.08);
-  color:white;
-}
-
+.nav-links a:hover{background:var(--glass-2);color:#fff}
 .nav-btn{
-  border:none;
-
-  background:white;
-  color:black;
-
-  padding:14px 24px;
-
-  border-radius:999px;
-
-  font-weight:700;
-
-  cursor:pointer;
-
-  transition:.3s;
+  border:none;cursor:pointer;font-weight:700;font-size:.85rem;
+  padding:10px 18px;border-radius:999px;
+  background:#fff;color:#000;transition:.25s;
 }
-
-.nav-btn:hover{
-  transform:translateY(-2px);
-}
-
-/* =========================
-HERO
-========================= */
-
+.nav-btn:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(255,255,255,.18)}
+/* ===== Hero ===== */
 .hero{
-  min-height:100vh;
-
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-
-  text-align:center;
-
-  padding:140px 20px 80px;
-
-  position:relative;
+  min-height:100vh;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;
+  padding:160px 20px 100px;position:relative;
 }
-
-.hero-ring{
-  position:absolute;
-
-  width:500px;
-  height:500px;
-
-  border-radius:50%;
-
-  border:1px solid rgba(255,255,255,.12);
-
-  box-shadow:
-    0 0 120px rgba(255,255,255,.08),
-    inset 0 0 60px rgba(255,255,255,.04);
-
-  z-index:-1;
+.badge{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:8px 14px;border-radius:999px;
+  background:var(--glass);border:1px solid var(--border);
+  backdrop-filter:blur(20px);font-size:.72rem;letter-spacing:2px;
+  text-transform:uppercase;color:rgba(255,255,255,.75);margin-bottom:28px;
 }
-
-.hero-glow{
-  position:absolute;
-
-  width:700px;
-  height:700px;
-
-  border-radius:50%;
-
-  background:
-  radial-gradient(circle,
-    rgba(255,255,255,.16),
-    rgba(180,120,255,.12),
-    transparent 70%);
-
-  filter:blur(80px);
-
-  z-index:-2;
-}
-
-.hero-badge{
-  display:flex;
-  align-items:center;
-  gap:10px;
-
-  padding:11px 18px;
-
-  background:var(--glass);
-
-  border:1px solid var(--border);
-
-  border-radius:999px;
-
-  backdrop-filter:blur(40px);
-  -webkit-backdrop-filter:blur(40px);
-
-  margin-bottom:34px;
-
-  color:rgba(255,255,255,.72);
-
-  font-size:.72rem;
-
-  letter-spacing:2px;
-
-  text-transform:uppercase;
-}
-
 .dot{
-  width:7px;
-  height:7px;
-
-  border-radius:50%;
-
-  background:white;
-
-  box-shadow:0 0 14px white;
+  width:7px;height:7px;border-radius:50%;background:#22d3ee;
+  box-shadow:0 0 12px #22d3ee;
 }
-
 .hero h1{
-  font-size:clamp(4rem,11vw,8rem);
-
-  line-height:.92;
-
-  font-weight:900;
-
-  letter-spacing:-5px;
-
-  margin-bottom:24px;
+  font-size:clamp(3rem,9vw,6.5rem);line-height:.95;font-weight:900;
+  letter-spacing:-.04em;margin-bottom:22px;
 }
-
-.hero h1 span{
-  color:rgba(255,255,255,.28);
+.hero h1 .grad{
+  background:linear-gradient(135deg,#fff 0%,#a78bfa 50%,#22d3ee 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
 }
-
-.hero p{
-  max-width:650px;
-
-  color:var(--muted);
-
-  line-height:1.9;
-
-  font-size:1rem;
-}
-
-.hero-buttons{
-  display:flex;
-  gap:14px;
-
-  margin-top:40px;
-}
-
-/* =========================
-BUTTONS
-========================= */
-
+.hero p{max-width:600px;color:var(--muted);font-size:1.02rem}
+.hero-buttons{display:flex;gap:12px;margin-top:36px;flex-wrap:wrap;justify-content:center}
 .btn{
-  border:none;
-
-  padding:16px 30px;
-
-  border-radius:999px;
-
-  font-weight:700;
-
-  cursor:pointer;
-
-  transition:.35s;
+  border:none;cursor:pointer;font-weight:700;font-size:.92rem;
+  padding:14px 24px;border-radius:999px;transition:.25s;
+  display:inline-flex;align-items:center;gap:8px;
 }
-
 .btn-primary{
-  background:white;
-  color:black;
-
-  box-shadow:
-    0 10px 30px rgba(255,255,255,.15);
+  background:linear-gradient(135deg,var(--accent),#5b8cff);
+  color:#fff;box-shadow:0 10px 30px rgba(124,92,255,.35);
 }
-
-.btn-primary:hover{
-  transform:translateY(-3px) scale(1.02);
-}
-
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(124,92,255,.5)}
 .btn-glass{
-  background:rgba(255,255,255,.05);
-
-  color:white;
-
-  border:1px solid rgba(255,255,255,.08);
-
-  backdrop-filter:blur(30px);
+  background:var(--glass-2);color:#fff;border:1px solid var(--border-2);
+  backdrop-filter:blur(20px);
 }
-
-.btn-glass:hover{
-  background:rgba(255,255,255,.08);
-
-  transform:translateY(-3px);
+.btn-glass:hover{background:rgba(255,255,255,.12);transform:translateY(-2px)}
+.hero-stats{
+  margin-top:60px;display:flex;gap:36px;flex-wrap:wrap;justify-content:center;
+  padding:18px 28px;border-radius:24px;
+  background:var(--glass);border:1px solid var(--border);
+  backdrop-filter:blur(20px);
 }
-
-/* =========================
-SECTION
-========================= */
-
-.section{
-  max-width:1250px;
-  margin:auto;
-
-  padding:100px 24px;
-}
-
+.hero-stats div{text-align:center}
+.hero-stats strong{display:block;font-size:1.4rem;font-weight:800}
+.hero-stats span{font-size:.72rem;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
+/* ===== Section ===== */
+.section{max-width:1180px;margin:auto;padding:90px 24px}
+.section-head{margin-bottom:50px;text-align:center}
 .section-label{
-  color:rgba(255,255,255,.35);
-
-  letter-spacing:3px;
-
-  text-transform:uppercase;
-
-  font-size:.7rem;
-
-  margin-bottom:18px;
+  color:var(--muted);letter-spacing:3px;text-transform:uppercase;
+  font-size:.7rem;margin-bottom:14px;
 }
-
 .section-title{
-  font-size:clamp(2.5rem,6vw,5rem);
-
-  line-height:1;
-
-  letter-spacing:-3px;
-
-  font-weight:900;
-
-  margin-bottom:20px;
+  font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.05;
+  letter-spacing:-.03em;font-weight:900;margin-bottom:14px;
 }
-
-.section-title span{
-  color:rgba(255,255,255,.28);
-}
-
-.section-desc{
-  max-width:650px;
-
-  color:var(--muted);
-
-  line-height:1.8;
-
-  margin-bottom:50px;
-}
-
-/* =========================
-CARDS
-========================= */
-
-.grid{
-  display:grid;
-
-  grid-template-columns:
-  repeat(auto-fit,minmax(280px,1fr));
-
-  gap:22px;
-}
-
+.section-title span{color:rgba(255,255,255,.32)}
+.section-desc{max-width:600px;margin:0 auto;color:var(--muted)}
+/* ===== Cards ===== */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
 .card{
-  position:relative;
-
-  overflow:hidden;
-
-  padding:32px;
-
-  border-radius:36px;
-
-  background:rgba(255,255,255,.05);
-
-  border:1px solid rgba(255,255,255,.08);
-
-  backdrop-filter:blur(40px) saturate(180%);
-  -webkit-backdrop-filter:blur(40px) saturate(180%);
-
-  box-shadow:var(--shadow);
-
-  transition:.4s;
+  position:relative;overflow:hidden;padding:26px;border-radius:24px;
+  background:var(--glass);border:1px solid var(--border);
+  backdrop-filter:blur(20px);box-shadow:var(--shadow);transition:.3s;
 }
-
 .card::before{
-  content:'';
-
-  position:absolute;
-  inset:0;
-
-  background:
-  linear-gradient(
-    180deg,
-    rgba(255,255,255,.08),
-    transparent
-  );
-
-  opacity:.4;
+  content:'';position:absolute;inset:0;border-radius:inherit;
+  background:linear-gradient(180deg,rgba(255,255,255,.06),transparent 40%);
+  pointer-events:none;
 }
-
-.card:hover{
-  transform:
-    translateY(-10px)
-    scale(1.015);
-
-  background:rgba(255,255,255,.08);
-
-  border-color:rgba(255,255,255,.14);
-}
-
+.card:hover{transform:translateY(-6px);border-color:var(--border-2);background:var(--glass-2)}
 .icon{
-  width:58px;
-  height:58px;
-
-  border-radius:18px;
-
-  background:rgba(255,255,255,.05);
-
-  border:1px solid rgba(255,255,255,.08);
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  margin-bottom:20px;
-
-  font-size:1.2rem;
+  width:46px;height:46px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:16px;font-size:1.1rem;
+  background:linear-gradient(135deg,rgba(124,92,255,.25),rgba(34,211,238,.15));
+  border:1px solid var(--border-2);
 }
-
-.card h3{
-  font-size:1.1rem;
-  margin-bottom:10px;
-}
-
-.card p{
-  color:var(--muted);
-
-  line-height:1.7;
-
-  font-size:.92rem;
-}
-
-/* =========================
-SHOWCASE
-========================= */
-
+.card h3{font-size:1.05rem;margin-bottom:8px;font-weight:700}
+.card p{color:var(--muted);font-size:.9rem;line-height:1.65}
+/* ===== Code Showcase ===== */
 .showcase{
-  margin-top:60px;
-
-  padding:40px;
-
-  border-radius:40px;
-
-  background:rgba(255,255,255,.04);
-
-  border:1px solid rgba(255,255,255,.08);
-
-  backdrop-filter:blur(40px);
-
-  position:relative;
-
-  overflow:hidden;
+  margin-top:24px;padding:8px;border-radius:28px;
+  background:var(--glass);border:1px solid var(--border);
+  backdrop-filter:blur(24px);box-shadow:var(--shadow);
+  position:relative;overflow:hidden;
 }
-
-.showcase::before{
-  content:'';
-
-  position:absolute;
-
-  width:500px;
-  height:500px;
-
-  background:
-  radial-gradient(circle,
-    rgba(255,255,255,.12),
-    transparent 70%);
-
-  top:-200px;
-  right:-200px;
-
-  filter:blur(40px);
+.code-window{
+  border-radius:22px;overflow:hidden;
+  background:linear-gradient(180deg,#0a0c14,#070810);
+  border:1px solid var(--border);
 }
-
-.mockup{
-  width:100%;
-  height:420px;
-
-  border-radius:30px;
-
-  background:
-  linear-gradient(
-    135deg,
-    rgba(255,255,255,.10),
-    rgba(255,255,255,.02)
-  );
-
-  border:1px solid rgba(255,255,255,.08);
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  font-size:2rem;
-
-  color:rgba(255,255,255,.4);
+.code-bar{
+  display:flex;align-items:center;gap:8px;padding:14px 18px;
+  border-bottom:1px solid var(--border);
+  background:rgba(255,255,255,.02);
 }
-
-/* =========================
-FOOTER
-========================= */
-
+.code-bar i{width:11px;height:11px;border-radius:50%;display:block}
+.code-bar i:nth-child(1){background:#ff5f57}
+.code-bar i:nth-child(2){background:#febc2e}
+.code-bar i:nth-child(3){background:#28c840}
+.code-bar span{
+  margin-left:14px;font-size:.78rem;color:var(--muted);
+  font-family:ui-monospace,monospace;
+}
+.code-body{
+  padding:24px 26px;font-family:ui-monospace,'SF Mono',Menlo,monospace;
+  font-size:.85rem;line-height:1.75;overflow-x:auto;
+}
+.code-body .k{color:#c4a8ff}
+.code-body .s{color:#7ee787}
+.code-body .c{color:#6b7280}
+.code-body .f{color:#79c0ff}
+.code-body .n{color:#ffa657}
+/* ===== Footer ===== */
 footer{
-  padding:40px 24px;
-
-  border-top:1px solid rgba(255,255,255,.06);
-
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-
-  flex-wrap:wrap;
-
-  gap:16px;
-
-  color:rgba(255,255,255,.4);
+  padding:40px 24px;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:14px;color:rgba(255,255,255,.4);font-size:.85rem;
+  max-width:1180px;margin:60px auto 0;
 }
-
-footer a{
-  color:rgba(255,255,255,.55);
-  text-decoration:none;
-}
-
-/* =========================
-MOBILE
-========================= */
-
+footer .links{display:flex;gap:18px}
+footer a:hover{color:#fff}
+/* ===== Mobile ===== */
 @media(max-width:768px){
-
-  nav{
-    height:auto;
-
-    padding:16px;
-
-    border-radius:28px;
-
-    flex-direction:column;
-
-    gap:14px;
-  }
-
-  .nav-links{
-    flex-wrap:wrap;
-    justify-content:center;
-  }
-
-  .hero h1{
-    letter-spacing:-2px;
-  }
-
-  .hero-ring{
-    width:320px;
-    height:320px;
-  }
-
-  .hero-glow{
-    width:420px;
-    height:420px;
-  }
-
-  .showcase{
-    padding:24px;
-  }
-
+  nav{padding:10px 12px;border-radius:24px}
+  .nav-links{display:none}
+  .hero{padding:140px 18px 80px}
+  .hero-stats{gap:22px;padding:14px 18px}
+  .code-body{font-size:.78rem}
 }
-
 </style>
 </head>
-
 <body>
-
-<!-- BACKGROUND -->
-
 <div class="bg"></div>
-<div class="noise"></div>
-
-<!-- NAV -->
-
+<div class="grid-overlay"></div>
 <nav>
-
   <div class="logo">
-    <div class="logo-circle"></div>
+    <div class="logo-mark"></div>
     <span>VEXYRON</span>
   </div>
-
   <div class="nav-links">
-    <a href="#">Home</a>
-    <a href="#">Features</a>
-    <a href="#">Updates</a>
-    <a href="#">Docs</a>
+    <a href="#features">Features</a>
+    <a href="#preview">Preview</a>
+    <a href="#updates">Updates</a>
+    <a href="#docs">Docs</a>
   </div>
-
-  <button class="nav-btn">
-    Download
-  </button>
-
+  <button class="nav-btn">Download</button>
 </nav>
-
-<!-- HERO -->
-
-<section class="hero">
-
-  <div class="hero-glow"></div>
-  <div class="hero-ring"></div>
-
-  <div class="hero-badge">
-    <div class="dot"></div>
-    Apple Liquid Glass Interface
-  </div>
-
-  <h1>
-    Future UI<br>
-    <span>reimagined.</span>
-  </h1>
-
-  <p>
-    Ultra clean Apple inspired glassmorphism experience
-    with smooth blur layers, floating cards, cinematic glow
-    and minimal premium aesthetics.
-  </p>
-
+<header class="hero">
+  <div class="badge"><span class="dot"></span> v4.2 · Undetected · Roblox Exploit</div>
+  <h1>Execute scripts.<br><span class="grad">Dominate Roblox.</span></h1>
+  <p>VEXYRON ist ein leistungsstarker Roblox Script Executor mit Level 8 Execution, schneller Injection und einer cleanen Liquid Glass UI.</p>
   <div class="hero-buttons">
-
-    <button class="btn btn-primary">
-      Get Started
-    </button>
-
-    <button class="btn btn-glass">
-      Learn More
-    </button>
-
+    <button class="btn btn-primary">↓ Download Free</button>
+    <button class="btn btn-glass">View Scripts</button>
   </div>
-
-</section>
-
-<!-- FEATURES -->
-
-<section class="section">
-
-  <div class="section-label">
-    EXPERIENCE
+  <div class="hero-stats">
+    <div><strong>500K+</strong><span>Users</span></div>
+    <div><strong>99.9%</strong><span>Uptime</span></div>
+    <div><strong>Lvl 8</strong><span>Execution</span></div>
+    <div><strong>24/7</strong><span>Updates</span></div>
   </div>
-
-  <div class="section-title">
-    Pure liquid<br>
-    <span>glass system.</span>
+</header>
+<section class="section" id="features">
+  <div class="section-head">
+    <div class="section-label">Features</div>
+    <h2 class="section-title">Built for <span>serious execution.</span></h2>
+    <p class="section-desc">Alles was du brauchst um Scripts schnell, stabil und unentdeckt auf Roblox auszuführen.</p>
   </div>
-
-  <div class="section-desc">
-    Inspired by Apple VisionOS and modern Apple landing pages.
-    Every element uses layered blur, soft gradients,
-    floating depth and smooth transitions.
-  </div>
-
   <div class="grid">
-
     <div class="card">
-
-      <div class="icon">✦</div>
-
-      <h3>Liquid Blur</h3>
-
-      <p>
-        Strong cinematic backdrop blur with layered transparency
-        and soft ambient lighting.
-      </p>
-
+      <div class="icon">⚡</div>
+      <h3>Instant Injection</h3>
+      <p>Auto-Inject in unter 2 Sekunden. Keine Crashes, kein Lag — direkt in den Roblox Client.</p>
     </div>
-
     <div class="card">
-
-      <div class="icon">◎</div>
-
-      <h3>Glass Depth</h3>
-
-      <p>
-        Floating UI cards with internal highlights and Apple style
-        shadows for realistic depth.
-      </p>
-
+      <div class="icon">🛡</div>
+      <h3>Undetected</h3>
+      <p>Bypass für Byfron / Hyperion. Tägliche Updates halten den Executor sicher und einsatzbereit.</p>
     </div>
-
     <div class="card">
-
-      <div class="icon">◌</div>
-
-      <h3>Smooth Motion</h3>
-
-      <p>
-        Elegant hover animations and floating interactions
-        with premium transitions.
-      </p>
-
+      <div class="icon">⚙</div>
+      <h3>Level 8 Execution</h3>
+      <p>Volle Lua + Luau Unterstützung mit getgenv, hookfunction, debug library und mehr.</p>
     </div>
-
+    <div class="card">
+      <div class="icon">📜</div>
+      <h3>Script Hub</h3>
+      <p>Über 1.000 vorgefertigte Scripts: Aimbot, ESP, Auto-Farm, Reach und viele Game-Specific Hacks.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🎨</div>
+      <h3>Custom UI</h3>
+      <p>Editor mit Syntax Highlighting, Tabs, Autosave und Theme Support — komplett anpassbar.</p>
+    </div>
+    <div class="card">
+      <div class="icon">∞</div>
+      <h3>Forever Free</h3>
+      <p>Keine Keys, keine Paywalls, keine Ads. Einfach downloaden und ausführen.</p>
+    </div>
   </div>
-
-  <div class="showcase">
-
-    <div class="mockup">
-      APPLE STYLE UI
-    </div>
-
-  </div>
-
 </section>
-
-<!-- FOOTER -->
-
+<section class="section" id="preview">
+  <div class="section-head">
+    <div class="section-label">Preview</div>
+    <h2 class="section-title">Clean syntax. <span>Full power.</span></h2>
+    <p class="section-desc">Schreibe und führe Lua Scripts direkt im integrierten Editor aus.</p>
+  </div>
+  <div class="showcase">
+    <div class="code-window">
+      <div class="code-bar">
+        <i></i><i></i><i></i>
+        <span>vexyron · script.lua</span>
+      </div>
+      <pre class="code-body"><span class="c">-- VEXYRON · Auto Farm Example</span>
+<span class="k">local</span> Players = <span class="f">game</span>:<span class="f">GetService</span>(<span class="s">"Players"</span>)
+<span class="k">local</span> plr     = Players.LocalPlayer
+<span class="k">local</span> <span class="k">function</span> <span class="f">farm</span>()
+    <span class="k">for</span> _, target <span class="k">in</span> <span class="f">pairs</span>(<span class="f">workspace</span>.Mobs:<span class="f">GetChildren</span>()) <span class="k">do</span>
+        plr.Character:<span class="f">MoveTo</span>(target.Position)
+        <span class="f">wait</span>(<span class="n">0.1</span>)
+    <span class="k">end</span>
+<span class="k">end</span>
+<span class="k">while</span> <span class="k">true</span> <span class="k">do</span>
+    <span class="f">farm</span>()
+    <span class="f">wait</span>(<span class="n">1</span>)
+<span class="k">end</span></pre>
+    </div>
+  </div>
+</section>
 <footer>
-
-  <div>
-    © 2026 VEXYRON
+  <div>© 2026 VEXYRON · Not affiliated with Roblox Corporation</div>
+  <div class="links">
+    <a href="#">Discord</a>
+    <a href="#">Docs</a>
+    <a href="#">Terms</a>
   </div>
-
-  <div>
-    <a href="#">Privacy</a>
-  </div>
-
 </footer>
-
 </body>
 </html>
