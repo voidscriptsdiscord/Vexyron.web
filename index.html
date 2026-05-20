@@ -1,25 +1,40 @@
 <!-- =========================
-VEXYRON — APPLE STYLE REDESIGN
-REPLACE YOUR ENTIRE <style> WITH THIS
+APPLE LIQUID GLASS STYLE
+FULL CLEAN REDESIGN
 ========================= -->
 
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>VEXYRON</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
 <style>
+
+/* =========================
+ROOT
+========================= */
+
 :root{
   --bg:#05070b;
 
-  --white:#fff;
+  --white:#ffffff;
 
-  --glass:rgba(255,255,255,.05);
-  --glass2:rgba(255,255,255,.08);
+  --glass:rgba(255,255,255,.06);
+  --glass-strong:rgba(255,255,255,.09);
 
   --border:rgba(255,255,255,.08);
-  --border2:rgba(255,255,255,.16);
+  --border-strong:rgba(255,255,255,.14);
 
-  --text:rgba(255,255,255,.88);
-  --muted:rgba(255,255,255,.45);
-  --muted2:rgba(255,255,255,.28);
+  --text:rgba(255,255,255,.92);
+  --muted:rgba(255,255,255,.55);
 
-  --radius:30px;
+  --radius:34px;
 
   --shadow:
     0 10px 40px rgba(0,0,0,.35),
@@ -42,58 +57,71 @@ html{
 
 body{
   font-family:'Inter',sans-serif;
-
-  background:#05070b;
-  color:var(--white);
-
+  background:var(--bg);
+  color:white;
   overflow-x:hidden;
-
   -webkit-font-smoothing:antialiased;
 }
 
 /* =========================
-APPLE BACKGROUND
+BACKGROUND
 ========================= */
 
-.gradient-bg{
+.bg{
   position:fixed;
   inset:0;
-
-  background:
-    radial-gradient(circle at top left,
-      rgba(180,120,255,.18),
-      transparent 30%
-    ),
-
-    radial-gradient(circle at bottom left,
-      rgba(255,180,120,.10),
-      transparent 30%
-    ),
-
-    radial-gradient(circle at right,
-      rgba(80,120,255,.12),
-      transparent 35%
-    );
-
-  filter:blur(40px);
-
-  z-index:-2;
+  overflow:hidden;
+  z-index:-5;
 }
 
-.apple-noise{
+.bg::before{
+  content:'';
+
+  position:absolute;
+  width:900px;
+  height:900px;
+
+  top:-250px;
+  left:-200px;
+
+  background:
+  radial-gradient(circle,
+    rgba(173,120,255,.28),
+    transparent 60%);
+
+  filter:blur(80px);
+}
+
+.bg::after{
+  content:'';
+
+  position:absolute;
+  width:900px;
+  height:900px;
+
+  bottom:-350px;
+  right:-250px;
+
+  background:
+  radial-gradient(circle,
+    rgba(70,120,255,.22),
+    transparent 60%);
+
+  filter:blur(80px);
+}
+
+.noise{
   position:fixed;
   inset:0;
 
   background-image:
-  radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px);
+  radial-gradient(rgba(255,255,255,.08) 1px, transparent 1px);
 
-  background-size:3px 3px;
+  background-size:4px 4px;
 
-  opacity:.03;
+  opacity:.02;
 
   pointer-events:none;
-
-  z-index:-1;
 }
 
 /* =========================
@@ -109,70 +137,119 @@ nav{
   transform:translateX(-50%);
 
   width:calc(100% - 40px);
-  max-width:1150px;
+  max-width:1180px;
 
-  height:74px;
+  height:76px;
+
+  padding:0 26px;
 
   display:flex;
   align-items:center;
   justify-content:space-between;
 
-  padding:0 24px;
-
-  background:rgba(255,255,255,.04);
+  background:rgba(255,255,255,.05);
 
   border:1px solid rgba(255,255,255,.08);
 
   border-radius:999px;
 
-  backdrop-filter:blur(30px) saturate(180%);
-  -webkit-backdrop-filter:blur(30px) saturate(180%);
+  backdrop-filter:blur(40px) saturate(180%);
+  -webkit-backdrop-filter:blur(40px) saturate(180%);
 
   box-shadow:
-    0 10px 40px rgba(0,0,0,.30),
+    0 10px 50px rgba(0,0,0,.30),
     inset 0 1px 0 rgba(255,255,255,.06);
 
-  z-index:999;
+  z-index:1000;
 }
 
-.logo img{
-  height:34px;
-}
-
-.nav-tabs{
+.logo{
   display:flex;
-  gap:6px;
+  align-items:center;
+  gap:12px;
 }
 
-.nav-tab{
-  border:none;
-  outline:none;
+.logo-circle{
+  width:36px;
+  height:36px;
 
-  background:transparent;
+  border-radius:50%;
 
-  color:var(--muted);
+  border:2px solid white;
+
+  position:relative;
+
+  box-shadow:
+    0 0 30px rgba(255,255,255,.25);
+}
+
+.logo-circle::before{
+  content:'';
+
+  position:absolute;
+
+  width:54px;
+  height:16px;
+
+  border:2px solid white;
+
+  border-radius:50%;
+
+  top:8px;
+  left:-11px;
+
+  transform:rotate(-20deg);
+}
+
+.logo span{
+  font-weight:700;
+  letter-spacing:1px;
+}
+
+.nav-links{
+  display:flex;
+  gap:8px;
+}
+
+.nav-links a{
+  text-decoration:none;
+
+  color:rgba(255,255,255,.55);
+
+  font-size:.84rem;
+  font-weight:600;
 
   padding:11px 18px;
 
   border-radius:999px;
 
-  font-size:.8rem;
-  font-weight:600;
-
-  transition:.25s;
+  transition:.3s;
 }
 
-.nav-tab:hover{
+.nav-links a:hover{
   background:rgba(255,255,255,.08);
   color:white;
 }
 
-.nav-tab.active{
-  background:rgba(255,255,255,.10);
+.nav-btn{
+  border:none;
 
-  border:1px solid rgba(255,255,255,.08);
+  background:white;
+  color:black;
 
-  color:white;
+  padding:14px 24px;
+
+  border-radius:999px;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+  transition:.3s;
+}
+
+.nav-btn:hover{
+  transform:translateY(-2px);
 }
 
 /* =========================
@@ -189,92 +266,87 @@ HERO
 
   text-align:center;
 
-  position:relative;
+  padding:140px 20px 80px;
 
-  padding:120px 20px 60px;
+  position:relative;
 }
 
-.hero::before{
-  content:'';
-
+.hero-ring{
   position:absolute;
 
-  width:600px;
-  height:600px;
+  width:500px;
+  height:500px;
+
+  border-radius:50%;
+
+  border:1px solid rgba(255,255,255,.12);
+
+  box-shadow:
+    0 0 120px rgba(255,255,255,.08),
+    inset 0 0 60px rgba(255,255,255,.04);
+
+  z-index:-1;
+}
+
+.hero-glow{
+  position:absolute;
+
+  width:700px;
+  height:700px;
 
   border-radius:50%;
 
   background:
-    radial-gradient(circle,
-      rgba(255,255,255,.14) 0%,
-      rgba(180,120,255,.10) 35%,
-      transparent 70%
-    );
+  radial-gradient(circle,
+    rgba(255,255,255,.16),
+    rgba(180,120,255,.12),
+    transparent 70%);
 
   filter:blur(80px);
 
   z-index:-2;
 }
 
-.hero::after{
-  content:'';
-
-  position:absolute;
-
-  width:420px;
-  height:420px;
-
-  border-radius:50%;
-
-  border:2px solid rgba(255,255,255,.14);
-
-  box-shadow:
-    0 0 120px rgba(255,255,255,.16),
-    0 0 220px rgba(180,120,255,.10);
-
-  z-index:-1;
-}
-
 .hero-badge{
   display:flex;
   align-items:center;
-  gap:8px;
+  gap:10px;
 
-  padding:10px 18px;
+  padding:11px 18px;
+
+  background:var(--glass);
+
+  border:1px solid var(--border);
 
   border-radius:999px;
 
-  background:rgba(255,255,255,.05);
+  backdrop-filter:blur(40px);
+  -webkit-backdrop-filter:blur(40px);
 
-  border:1px solid rgba(255,255,255,.08);
+  margin-bottom:34px;
 
-  backdrop-filter:blur(30px) saturate(180%);
-  -webkit-backdrop-filter:blur(30px) saturate(180%);
+  color:rgba(255,255,255,.72);
 
-  margin-bottom:28px;
-
-  color:rgba(255,255,255,.7);
-
-  font-size:.7rem;
+  font-size:.72rem;
 
   letter-spacing:2px;
 
   text-transform:uppercase;
 }
 
-.badge-dot{
-  width:6px;
-  height:6px;
+.dot{
+  width:7px;
+  height:7px;
 
   border-radius:50%;
 
-  background:#fff;
+  background:white;
 
-  box-shadow:0 0 12px white;
+  box-shadow:0 0 14px white;
 }
 
-.hero-title{
-  font-size:clamp(4rem,10vw,8rem);
+.hero h1{
+  font-size:clamp(4rem,11vw,8rem);
 
   line-height:.92;
 
@@ -282,28 +354,28 @@ HERO
 
   letter-spacing:-5px;
 
-  margin-bottom:22px;
+  margin-bottom:24px;
 }
 
-.hero-title .dim{
+.hero h1 span{
   color:rgba(255,255,255,.28);
 }
 
-.hero-sub{
-  max-width:520px;
+.hero p{
+  max-width:650px;
 
-  color:rgba(255,255,255,.60);
+  color:var(--muted);
+
+  line-height:1.9;
 
   font-size:1rem;
-
-  line-height:1.8;
 }
 
-.hero-btns{
+.hero-buttons{
   display:flex;
   gap:14px;
 
-  margin-top:36px;
+  margin-top:40px;
 }
 
 /* =========================
@@ -313,19 +385,18 @@ BUTTONS
 .btn{
   border:none;
 
-  padding:15px 28px;
+  padding:16px 30px;
 
   border-radius:999px;
 
-  font-size:.85rem;
   font-weight:700;
 
-  transition:.3s;
-
   cursor:pointer;
+
+  transition:.35s;
 }
 
-.btn-white{
+.btn-primary{
   background:white;
   color:black;
 
@@ -333,8 +404,8 @@ BUTTONS
     0 10px 30px rgba(255,255,255,.15);
 }
 
-.btn-white:hover{
-  transform:translateY(-2px) scale(1.02);
+.btn-primary:hover{
+  transform:translateY(-3px) scale(1.02);
 }
 
 .btn-glass{
@@ -344,28 +415,24 @@ BUTTONS
 
   border:1px solid rgba(255,255,255,.08);
 
-  backdrop-filter:blur(30px) saturate(180%);
-  -webkit-backdrop-filter:blur(30px) saturate(180%);
+  backdrop-filter:blur(30px);
 }
 
 .btn-glass:hover{
-  background:rgba(255,255,255,.09);
+  background:rgba(255,255,255,.08);
 
-  border-color:rgba(255,255,255,.16);
-
-  transform:translateY(-2px);
+  transform:translateY(-3px);
 }
 
 /* =========================
-SECTIONS
+SECTION
 ========================= */
 
 .section{
-  max-width:1200px;
-
+  max-width:1250px;
   margin:auto;
 
-  padding:90px 24px;
+  padding:100px 24px;
 }
 
 .section-label{
@@ -377,7 +444,7 @@ SECTIONS
 
   font-size:.7rem;
 
-  margin-bottom:16px;
+  margin-bottom:18px;
 }
 
 .section-title{
@@ -392,71 +459,83 @@ SECTIONS
   margin-bottom:20px;
 }
 
-.section-title .dim{
+.section-title span{
   color:rgba(255,255,255,.28);
 }
 
 .section-desc{
-  max-width:580px;
+  max-width:650px;
 
-  color:rgba(255,255,255,.55);
+  color:var(--muted);
 
   line-height:1.8;
 
-  margin-bottom:46px;
+  margin-bottom:50px;
 }
 
 /* =========================
-APPLE CARDS
+CARDS
 ========================= */
 
-.feature-grid,
-.credits-grid,
-.updates-grid,
-.sounds-grid{
+.grid{
   display:grid;
 
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  grid-template-columns:
+  repeat(auto-fit,minmax(280px,1fr));
 
-  gap:18px;
+  gap:22px;
 }
 
-.feature-card,
-.credit-card,
-.update-card,
-.sound-card{
+.card{
+  position:relative;
+
+  overflow:hidden;
+
+  padding:32px;
+
+  border-radius:36px;
+
   background:rgba(255,255,255,.05);
 
   border:1px solid rgba(255,255,255,.08);
 
-  border-radius:32px;
-
-  padding:28px;
-
-  backdrop-filter:blur(30px) saturate(180%);
-  -webkit-backdrop-filter:blur(30px) saturate(180%);
+  backdrop-filter:blur(40px) saturate(180%);
+  -webkit-backdrop-filter:blur(40px) saturate(180%);
 
   box-shadow:var(--shadow);
 
-  transition:.35s;
+  transition:.4s;
 }
 
-.feature-card:hover,
-.credit-card:hover,
-.update-card:hover,
-.sound-card:hover{
+.card::before{
+  content:'';
+
+  position:absolute;
+  inset:0;
+
+  background:
+  linear-gradient(
+    180deg,
+    rgba(255,255,255,.08),
+    transparent
+  );
+
+  opacity:.4;
+}
+
+.card:hover{
   transform:
-    translateY(-8px)
-    scale(1.01);
+    translateY(-10px)
+    scale(1.015);
 
   background:rgba(255,255,255,.08);
 
-  border-color:rgba(255,255,255,.16);
+  border-color:rgba(255,255,255,.14);
 }
 
-.feature-icon{
-  width:56px;
-  height:56px;
+.icon{
+  width:58px;
+  height:58px;
 
   border-radius:18px;
 
@@ -468,136 +547,87 @@ APPLE CARDS
   align-items:center;
   justify-content:center;
 
-  margin-bottom:18px;
+  margin-bottom:20px;
+
+  font-size:1.2rem;
 }
 
-.feature-name{
-  font-size:1rem;
-  font-weight:700;
-
-  margin-bottom:8px;
+.card h3{
+  font-size:1.1rem;
+  margin-bottom:10px;
 }
 
-.feature-desc{
-  color:rgba(255,255,255,.52);
+.card p{
+  color:var(--muted);
 
   line-height:1.7;
 
-  font-size:.85rem;
+  font-size:.92rem;
 }
 
 /* =========================
-LOADER
+SHOWCASE
 ========================= */
 
-.loader-box{
-  max-width:720px;
+.showcase{
+  margin-top:60px;
+
+  padding:40px;
+
+  border-radius:40px;
+
+  background:rgba(255,255,255,.04);
+
+  border:1px solid rgba(255,255,255,.08);
+
+  backdrop-filter:blur(40px);
+
+  position:relative;
+
+  overflow:hidden;
+}
+
+.showcase::before{
+  content:'';
+
+  position:absolute;
+
+  width:500px;
+  height:500px;
+
+  background:
+  radial-gradient(circle,
+    rgba(255,255,255,.12),
+    transparent 70%);
+
+  top:-200px;
+  right:-200px;
+
+  filter:blur(40px);
+}
+
+.mockup{
   width:100%;
+  height:420px;
+
+  border-radius:30px;
+
+  background:
+  linear-gradient(
+    135deg,
+    rgba(255,255,255,.10),
+    rgba(255,255,255,.02)
+  );
+
+  border:1px solid rgba(255,255,255,.08);
 
   display:flex;
   align-items:center;
+  justify-content:center;
 
-  overflow:hidden;
+  font-size:2rem;
 
-  background:rgba(255,255,255,.05);
-
-  border:1px solid rgba(255,255,255,.08);
-
-  border-radius:24px;
-
-  backdrop-filter:blur(30px) saturate(180%);
-  -webkit-backdrop-filter:blur(30px) saturate(180%);
-}
-
-.loader-code{
-  flex:1;
-
-  padding:18px 24px;
-
-  color:rgba(255,255,255,.7);
-
-  font-family:'JetBrains Mono',monospace;
-
-  font-size:.8rem;
-}
-
-.loader-copy{
-  border:none;
-
-  background:white;
-
-  color:black;
-
-  padding:18px 22px;
-
-  font-weight:700;
-}
-
-/* =========================
-INPUTS
-========================= */
-
-.modal-field,
-.sounds-search{
-  width:100%;
-
-  border:none;
-  outline:none;
-
-  padding:15px 18px;
-
-  border-radius:18px;
-
-  background:rgba(255,255,255,.05);
-
-  border:1px solid rgba(255,255,255,.08);
-
-  color:white;
-
-  backdrop-filter:blur(30px) saturate(180%);
-  -webkit-backdrop-filter:blur(30px) saturate(180%);
-}
-
-.modal-field:focus,
-.sounds-search:focus{
-  border-color:rgba(255,255,255,.16);
-}
-
-/* =========================
-MODALS
-========================= */
-
-.modal-box,
-.upload-modal-box{
-  width:100%;
-  max-width:500px;
-
-  padding:34px;
-
-  background:rgba(15,15,18,.72);
-
-  border:1px solid rgba(255,255,255,.08);
-
-  border-radius:36px;
-
-  backdrop-filter:blur(40px) saturate(180%);
-  -webkit-backdrop-filter:blur(40px) saturate(180%);
-
-  box-shadow:
-    0 30px 90px rgba(0,0,0,.5);
-}
-
-.modal-title{
-  font-size:1.4rem;
-  font-weight:800;
-
-  margin-bottom:8px;
-}
-
-.modal-sub{
-  color:rgba(255,255,255,.5);
-
-  margin-bottom:28px;
+  color:rgba(255,255,255,.4);
 }
 
 /* =========================
@@ -605,18 +635,24 @@ FOOTER
 ========================= */
 
 footer{
-  border-top:1px solid rgba(255,255,255,.06);
+  padding:40px 24px;
 
-  padding:34px 24px;
+  border-top:1px solid rgba(255,255,255,.06);
 
   display:flex;
   justify-content:space-between;
   align-items:center;
+
   flex-wrap:wrap;
 
-  gap:14px;
+  gap:16px;
 
-  color:rgba(255,255,255,.38);
+  color:rgba(255,255,255,.4);
+}
+
+footer a{
+  color:rgba(255,255,255,.55);
+  text-decoration:none;
 }
 
 /* =========================
@@ -628,40 +664,194 @@ MOBILE
   nav{
     height:auto;
 
-    border-radius:28px;
+    padding:16px;
 
-    padding:14px;
+    border-radius:28px;
 
     flex-direction:column;
 
-    gap:12px;
+    gap:14px;
   }
 
-  .nav-tabs{
+  .nav-links{
     flex-wrap:wrap;
     justify-content:center;
   }
 
-  .hero-title{
+  .hero h1{
     letter-spacing:-2px;
   }
 
-  .hero::after{
-    width:300px;
-    height:300px;
+  .hero-ring{
+    width:320px;
+    height:320px;
   }
 
-  .hero::before{
+  .hero-glow{
     width:420px;
     height:420px;
   }
 
-  .feature-card,
-  .credit-card,
-  .update-card,
-  .sound-card{
-    border-radius:24px;
+  .showcase{
+    padding:24px;
   }
 
 }
+
 </style>
+</head>
+
+<body>
+
+<!-- BACKGROUND -->
+
+<div class="bg"></div>
+<div class="noise"></div>
+
+<!-- NAV -->
+
+<nav>
+
+  <div class="logo">
+    <div class="logo-circle"></div>
+    <span>VEXYRON</span>
+  </div>
+
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#">Features</a>
+    <a href="#">Updates</a>
+    <a href="#">Docs</a>
+  </div>
+
+  <button class="nav-btn">
+    Download
+  </button>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+  <div class="hero-glow"></div>
+  <div class="hero-ring"></div>
+
+  <div class="hero-badge">
+    <div class="dot"></div>
+    Apple Liquid Glass Interface
+  </div>
+
+  <h1>
+    Future UI<br>
+    <span>reimagined.</span>
+  </h1>
+
+  <p>
+    Ultra clean Apple inspired glassmorphism experience
+    with smooth blur layers, floating cards, cinematic glow
+    and minimal premium aesthetics.
+  </p>
+
+  <div class="hero-buttons">
+
+    <button class="btn btn-primary">
+      Get Started
+    </button>
+
+    <button class="btn btn-glass">
+      Learn More
+    </button>
+
+  </div>
+
+</section>
+
+<!-- FEATURES -->
+
+<section class="section">
+
+  <div class="section-label">
+    EXPERIENCE
+  </div>
+
+  <div class="section-title">
+    Pure liquid<br>
+    <span>glass system.</span>
+  </div>
+
+  <div class="section-desc">
+    Inspired by Apple VisionOS and modern Apple landing pages.
+    Every element uses layered blur, soft gradients,
+    floating depth and smooth transitions.
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+
+      <div class="icon">✦</div>
+
+      <h3>Liquid Blur</h3>
+
+      <p>
+        Strong cinematic backdrop blur with layered transparency
+        and soft ambient lighting.
+      </p>
+
+    </div>
+
+    <div class="card">
+
+      <div class="icon">◎</div>
+
+      <h3>Glass Depth</h3>
+
+      <p>
+        Floating UI cards with internal highlights and Apple style
+        shadows for realistic depth.
+      </p>
+
+    </div>
+
+    <div class="card">
+
+      <div class="icon">◌</div>
+
+      <h3>Smooth Motion</h3>
+
+      <p>
+        Elegant hover animations and floating interactions
+        with premium transitions.
+      </p>
+
+    </div>
+
+  </div>
+
+  <div class="showcase">
+
+    <div class="mockup">
+      APPLE STYLE UI
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+  <div>
+    © 2026 VEXYRON
+  </div>
+
+  <div>
+    <a href="#">Privacy</a>
+  </div>
+
+</footer>
+
+</body>
+</html>
